@@ -1,2 +1,2 @@
 # Frequecy-Principle
-Explanation of DNN by frequency principle
+Explain DNN by Frequency Principle
