@@ -42,10 +42,16 @@ def myFunc3(x):
     return x + np.power(x,2) + 3 * np.power(x,3)
 
 def myFunc4(x):
-    return 5 * np.sin(10*x) + 5 * np.sin(15*x)
+    return np.sin(10*x) + np.sin(15*x)
 
 def myFunc5(x):
     return np.sin(x) + np.sin(2*x) + 10 * np.sin(10*x)
+
+def myFunc6(x):
+    return np.sin(x)
+
+def myFunc7(x):
+    return np.sin(15*x)
 
 def myFFT(x,freq_len=20):
     x = np.squeeze(x)
@@ -54,9 +60,9 @@ def myFFT(x,freq_len=20):
     return np.absolute(fft_coef)
 
 x_train = np.reshape(np.linspace(-10, 10, train_size),[train_size,1])
-y_train = myFunc4(x_train)
+y_train = myFunc7(x_train)
 x_test = np.reshape(np.linspace(-10, 10, test_size),[test_size,1])
-y_test = myFunc4(x_test)
+y_test = myFunc7(x_test)
 print(x_train.shape)
 print(y_test.shape)
 fft_train = myFFT(y_train, freq_len)
@@ -90,8 +96,8 @@ for epoch in range(epochs):
         # plt.show()
         plt.savefig(fig_path+'trainfft'+str(epoch)+'.png',dpi=100)
         fig = plt.figure()
-        plt.plot(x_train, (y_train_pred)/train_size,'g*-')
-        plt.plot(x_train, (y_train)/train_size,'ro-')
+        plt.plot(x_train, (y_train_pred),'g*-')
+        plt.plot(x_train, (y_train),'ro-')
         plt.xlabel('x')
         plt.ylabel('y')
         plt.title('Train Epoch %d' % epoch)
@@ -108,8 +114,8 @@ for epoch in range(epochs):
         # plt.show()
         plt.savefig(fig_path+'testfft'+str(epoch)+'.png',dpi=100)
         fig = plt.figure()
-        plt.plot(x_test, (y_test_pred)/test_size,'g*-')
-        plt.plot(x_test, (y_test)/test_size,'ro-')
+        plt.plot(x_test, (y_test_pred),'g*-')
+        plt.plot(x_test, (y_test),'ro-')
         plt.xlabel('x')
         plt.ylabel('y')
         plt.title('Test Epoch %d' % epoch)
